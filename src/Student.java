@@ -4,8 +4,8 @@ public class Student {
     private String id;
     private String name;
     private int age;
-    private final ArrayList<Course> enrolledCourses;
-    private final ArrayList<String> grades;
+    private ArrayList<Course> enrolledCourses;
+    private ArrayList<String> grades;
 
     // Create a class constructor for the Student class
     public Student(String id, String name, int age) {

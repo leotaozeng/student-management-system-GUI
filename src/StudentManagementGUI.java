@@ -16,6 +16,7 @@ public class StudentManagementGUI extends JFrame {
     private final ArrayList<Student> students;
     private final ArrayList<Course> courses;
 
+    // Create a class constructor for the StudentManagementGUI class
     public StudentManagementGUI() {
         students = new ArrayList<>();
         courses = new ArrayList<>();
@@ -188,6 +189,12 @@ public class StudentManagementGUI extends JFrame {
             String id = idField.getText();
             String name = nameField.getText();
 
+            // Check if the course ID or name already exists
+            if (findCourseById(id) != null || findCourseByName(name) != null) {
+                JOptionPane.showMessageDialog(this, "Course ID or Name already exists!", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             Course course = new Course(id, name);
             courses.add(course);
 
@@ -258,6 +265,10 @@ public class StudentManagementGUI extends JFrame {
 
     private Course findCourseById(String id) {
         return courses.stream().filter(c -> c.getId().equals(id)).findFirst().orElse(null);
+    }
+
+    private Course findCourseByName(String name) {
+        return courses.stream().filter(c -> c.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
     }
 
     public static void main(String[] args) {
